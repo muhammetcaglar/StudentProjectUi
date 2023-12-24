@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ViewStudentComponent } from './view-student.component';
 
 describe('ViewStudentComponent', () => {

@@ -8,7 +8,7 @@ lastName:string,
 dateOfBirth:string,
 email:string,
 phoneNumber:number,
-profileImgUrl:string,
+profileImageUrl:string,
 genderId:string,
 gender:Gender,
 address:Address

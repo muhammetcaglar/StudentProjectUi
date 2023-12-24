@@ -44,7 +44,7 @@ import { StudentsComponent } from './students/students.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ViewStudentComponent } from './students/view-student/view-student.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,17 +95,14 @@ import { ViewStudentComponent } from './students/view-student/view-student.compo
     MatSortModule,
     MatTableModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FlexLayoutModule
 
   ],
   schemas :[
     CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [],
-  bootstrap: [
-    AppComponent,
-
-
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
