@@ -125,7 +125,7 @@ export class ViewStudentComponent  implements OnInit{
     this.studentService.addStudent(this.student)
     .subscribe(
       (success)=>{
-        debugger;
+
         this.snackbar.open('Öğrenci kayıt işlemi gerçekleşti',undefined,{
           duration:2500
         }),
@@ -135,6 +135,7 @@ export class ViewStudentComponent  implements OnInit{
       },
 
       (error)=>{
+        debugger;
         this.snackbar.open('Öğrenci kayıt işlemi gerçekleştirilemedi!',undefined,{
           duration:2500
         })

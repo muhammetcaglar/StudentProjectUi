@@ -13,7 +13,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class StudentsComponent implements OnInit{
   students:Student[]=[];
-  displayedColumns: string[] = ['firstName', 'lastName', 'dateOfBirth', 'email','phoneNumber','gender','edit'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'dateOfBirth', 'email','phoneNumber','edit','gender.description'];
   dataSource:MatTableDataSource<Student> = new MatTableDataSource<Student>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!:MatSort;
@@ -27,15 +27,32 @@ export class StudentsComponent implements OnInit{
       (success)=>{
         this.students= success;
         this.dataSource= new MatTableDataSource<Student>(this.students);
+        this.dataSource.sortingDataAccessor=(item,property)=>{
+          switch(property){
+            case 'gender.description':return item.gender.description;
+            default: return property;
+          }
+        };
+
         this.dataSource.paginator=this.paginator;
         this.dataSource.sort=this.sort;
       },
-      (err)=>{
+      (error)=>{
 
       }
     )
   }
-  filterStudents(){
+
+  filterStudents(event: Event){
+    const filterValue= (event.target as HTMLInputElement).value;
     this.dataSource.filter=this.filterString.trim().toLocaleLowerCase();
+    this.dataSource.filterPredicate=(data,filter)=>{
+      return data.gender.description.toLocaleLowerCase().includes(filter)
+      || data.firstName.toLocaleLowerCase().includes(filter)
+      || data.lastName.toLocaleLowerCase().includes(filter)
+      || data.dateOfBirth.substring(0,10).includes(filter)
+      || data.email.toLocaleLowerCase().includes(filter)
+      || data.phoneNumber.toString().includes(filter)
+    };
   }
 }
